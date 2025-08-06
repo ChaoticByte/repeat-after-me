@@ -56,6 +56,14 @@ func next_phrase() -> void:
 	current_phrase = phrases_last_ts[phrases_last_ts_keys.min()]
 	current_status = STATUS_PLEASE_REPEAT
 
+func try_overwrite_next_phrase(p: String):
+	if p in PhrasesManager.phrases:
+		current_phrase = p
+		current_status = STATUS_PLEASE_REPEAT
+	else:
+		# if this didn't work, choose one automatically
+		next_phrase()
+
 func cleanup_last_played_phrases():
 	var changed = false
 	# remove phrases that don't exist anymore

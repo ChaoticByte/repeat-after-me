@@ -8,3 +8,6 @@ var text: String:
 
 func _on_remove_button_pressed() -> void:
 	PhrasesManager.remove_phrase(text)
+
+func _on_label_button_pressed() -> void:
+	CoreGameplayManager.try_overwrite_next_phrase(text)
