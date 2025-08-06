@@ -32,6 +32,15 @@ theme = ExtResource("2_lwwgp")
 theme_override_styles/panel = SubResource("StyleBoxTexture_choun")
 script = ExtResource("2_labj1")
 
+[node name="MenuLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 39.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_labj1")
+
 [node name="CloseSettingsButton" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 1
@@ -45,21 +54,43 @@ grow_horizontal = 0
 texture_normal = ExtResource("2_wswnh")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="."]
+[node name="ImportExportLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 16.0
-offset_right = 104.0
-offset_bottom = 39.0
-text = "Settings"
-label_settings = SubResource("LabelSettings_labj1")
+offset_top = 80.0
+offset_right = 144.0
+offset_bottom = 114.8
+text = "Import | Export
+to/from Clipboard"
 
-[node name="ResetXPButton" type="Button" parent="."]
+[node name="ImportButton" type="Button" parent="ImportExportLabel"]
+layout_mode = 0
+offset_top = 48.0
+offset_right = 61.0
+offset_bottom = 72.0
+text = "Import"
+
+[node name="ExportButton" type="Button" parent="ImportExportLabel"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 48.0
+offset_right = 136.0
+offset_bottom = 72.0
+text = "Export"
+
+[node name="ResetLabel" type="Label" parent="."]
 layout_mode = 0
 offset_left = 16.0
-offset_top = 72.0
-offset_right = 92.0
-offset_bottom = 96.0
+offset_top = 192.0
+offset_right = 91.0
+offset_bottom = 207.9
+text = "Reset Data"
+
+[node name="ResetXPButton" type="Button" parent="ResetLabel"]
+layout_mode = 0
+offset_top = 24.0
+offset_right = 76.0
+offset_bottom = 48.0
 text = "Reset XP"
 
 [node name="Info Footer" type="Label" parent="."]
@@ -84,4 +115,6 @@ text_overrun_behavior = 3
 script = ExtResource("5_lwwgp")
 
 [connection signal="pressed" from="CloseSettingsButton" to="." method="_on_close_settings_button_pressed"]
-[connection signal="pressed" from="ResetXPButton" to="." method="_on_reset_xp_button_pressed"]
+[connection signal="pressed" from="ImportExportLabel/ImportButton" to="." method="_on_import_button_pressed"]
+[connection signal="pressed" from="ImportExportLabel/ExportButton" to="." method="_on_export_button_pressed"]
+[connection signal="pressed" from="ResetLabel/ResetXPButton" to="." method="_on_reset_xp_button_pressed"]
