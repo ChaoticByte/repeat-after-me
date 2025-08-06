@@ -14,6 +14,7 @@ config/name="Repeat After Me"
 config/version="0.1.0"
 run/main_scene="uid://cv38ubwerjlpx"
 config/features=PackedStringArray("4.4", "Mobile")
+run/low_processor_mode=true
 boot_splash/bg_color=Color(0.0562916, 0.0562916, 0.0562916, 1)
 boot_splash/image="uid://020ibqgo0y3m"
 config/icon="uid://020ibqgo0y3m"
