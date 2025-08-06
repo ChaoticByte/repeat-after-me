@@ -1,0 +1,235 @@
+[gd_scene load_steps=18 format=3 uid="uid://cv38ubwerjlpx"]
+
+[ext_resource type="Script" uid="uid://bga75qw3b2be3" path="res://src/ui/main.gd" id="1_tipki"]
+[ext_resource type="Theme" uid="uid://06umghrsjedx" path="res://resources/main_theme_overrides.tres" id="1_ya4ey"]
+[ext_resource type="Script" uid="uid://dyh2ejk0r2xeq" path="res://src/ui/points_counter.gd" id="3_choun"]
+[ext_resource type="Script" uid="uid://b2n6p0wilywoj" path="res://src/ui/required_points_counter.gd" id="6_85g3d"]
+[ext_resource type="LabelSettings" uid="uid://cuynmxlj6maig" path="res://resources/level_label_settings.tres" id="7_a8y0u"]
+[ext_resource type="PackedScene" uid="uid://dq3jysvuu7ix" path="res://scenes/settings_menu.tscn" id="8_85g3d"]
+[ext_resource type="Texture2D" uid="uid://doin43i42hl82" path="res://assets/icons/PhrasesIcon.png" id="8_choun"]
+[ext_resource type="Script" uid="uid://cql88rfja2khm" path="res://src/ui/level_counter.gd" id="8_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://vl26lhjwxmmf" path="res://assets/icons/SettingsIcon.png" id="9_choun"]
+[ext_resource type="PackedScene" uid="uid://bqgcsf0855xq" path="res://scenes/phrases_menu.tscn" id="9_ya4ey"]
+[ext_resource type="Script" uid="uid://bue5attfnwbd" path="res://src/ui/notification_container.gd" id="11_ya4ey"]
+
+[sub_resource type="Gradient" id="Gradient_ig7tw"]
+interpolation_mode = 2
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.598881, 0.880597, 0.979478)
+colors = PackedColorArray(0.0181584, 0.00862847, 0.0428164, 1, 0.261449, 0.130655, 0.405365, 1, 0.707783, 0.30943, 0.382465, 1, 0.893104, 0.621238, 0.575639, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0xm2m"]
+gradient = SubResource("Gradient_ig7tw")
+width = 640
+height = 640
+fill = 1
+fill_from = Vector2(0.491453, 1)
+fill_to = Vector2(0, 0.00854701)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eb6dy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]
+font_color = Color(1, 1, 1, 0.792157)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ya4ey"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.32549)
+
+[sub_resource type="LabelSettings" id="LabelSettings_eb6dy"]
+font_size = 18
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ya4ey")
+script = ExtResource("1_tipki")
+
+[node name="BackgroundTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -24.0
+offset_right = 288.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_0xm2m")
+expand_mode = 1
+
+[node name="ShowSettingsButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = 12.0
+offset_right = -8.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture_normal = ExtResource("9_choun")
+stretch_mode = 0
+
+[node name="ShowPhrasesButton" type="TextureButton" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -68.0
+offset_top = 12.0
+offset_right = -47.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture_normal = ExtResource("8_choun")
+stretch_mode = 5
+
+[node name="XpLevelsVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 64.0
+offset_right = -16.0
+offset_bottom = 152.0
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="LevelHBoxContainer" type="HBoxContainer" parent="XpLevelsVBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="LevelLabel" type="Label" parent="XpLevelsVBoxContainer/LevelHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Level"
+label_settings = ExtResource("7_a8y0u")
+
+[node name="LevelCounter" type="Label" parent="XpLevelsVBoxContainer/LevelHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+label_settings = ExtResource("7_a8y0u")
+script = ExtResource("8_jkv2x")
+
+[node name="XpHBoxContainer" type="HBoxContainer" parent="XpLevelsVBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="PointsCounter" type="Label" parent="XpLevelsVBoxContainer/XpHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+script = ExtResource("3_choun")
+
+[node name="Label" type="Label" parent="XpLevelsVBoxContainer/XpHBoxContainer"]
+layout_mode = 2
+text = "/"
+
+[node name="RequiredPointsCounter" type="Label" parent="XpLevelsVBoxContainer/XpHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "0"
+script = ExtResource("6_85g3d")
+
+[node name="PointsLabel" type="Label" parent="XpLevelsVBoxContainer/XpHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "XP"
+
+[node name="PhrasesDisplayVBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 168.0
+offset_right = -16.0
+offset_bottom = 280.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+
+[node name="CurrentPhrase" type="RichTextLabel" parent="PhrasesDisplayVBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 22
+theme_override_styles/background = SubResource("StyleBoxFlat_eb6dy")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="CurrentStatus" type="Label" parent="PhrasesDisplayVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_ya4ey")
+horizontal_alignment = 1
+
+[node name="AnswerInput" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+anchor_right = 1.0
+offset_left = 40.0
+offset_top = 296.0
+offset_right = -40.0
+offset_bottom = 320.0
+alignment = 1
+keep_editing_on_text_submit = true
+
+[node name="SubmitButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 344.0
+offset_right = 40.0
+offset_bottom = 376.0
+text = "Submit"
+
+[node name="SettingsMenu" parent="." instance=ExtResource("8_85g3d")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="PhrasesMenu" parent="." instance=ExtResource("9_ya4ey")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="NotificationContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -56.0
+offset_right = 32.0
+offset_bottom = -33.7
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ya4ey")
+script = ExtResource("11_ya4ey")
+
+[node name="Label" type="Label" parent="NotificationContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "......"
+label_settings = SubResource("LabelSettings_eb6dy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="ShowSettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ShowPhrasesButton" to="." method="_on_show_phrases_button_pressed"]
+[connection signal="text_changed" from="AnswerInput" to="." method="_on_answer_input_text_changed"]
+[connection signal="pressed" from="SubmitButton" to="." method="_on_submit_button_pressed"]

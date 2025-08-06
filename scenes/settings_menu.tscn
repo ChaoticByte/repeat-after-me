@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://dq3jysvuu7ix"]
+
+[ext_resource type="Shader" uid="uid://da36ryj6twm16" path="res://src/shaders/panel.gdshader" id="1_cr101"]
+[ext_resource type="Script" uid="uid://dj4i6sfufsa0t" path="res://src/ui/settings_menu.gd" id="2_labj1"]
+[ext_resource type="Theme" uid="uid://06umghrsjedx" path="res://resources/main_theme_overrides.tres" id="2_lwwgp"]
+[ext_resource type="Texture2D" uid="uid://cbv7fmq2x6ucf" path="res://assets/icons/CloseIcon.png" id="2_wswnh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
+shader = ExtResource("1_cr101")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_85g3d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_choun"]
+texture = SubResource("PlaceholderTexture2D_85g3d")
+
+[sub_resource type="LabelSettings" id="LabelSettings_labj1"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_lwwgp"]
+font_color = Color(1, 1, 1, 0.768627)
+
+[node name="SettingsMenu" type="Panel"]
+material = SubResource("ShaderMaterial_choun")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_lwwgp")
+theme_override_styles/panel = SubResource("StyleBoxTexture_choun")
+script = ExtResource("2_labj1")
+
+[node name="CloseSettingsButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = 16.0
+offset_right = -12.0
+offset_bottom = 36.0
+grow_horizontal = 0
+texture_normal = ExtResource("2_wswnh")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 104.0
+offset_bottom = 39.0
+text = "Settings"
+label_settings = SubResource("LabelSettings_labj1")
+
+[node name="ResetXPButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 92.0
+offset_bottom = 96.0
+text = "Reset XP"
+
+[node name="by" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -24.0
+offset_right = -10.0
+offset_bottom = -8.10001
+grow_horizontal = 0
+grow_vertical = 0
+text = "a game by ChaoticByte"
+label_settings = SubResource("LabelSettings_lwwgp")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="pressed" from="CloseSettingsButton" to="." method="_on_close_settings_button_pressed"]
+[connection signal="pressed" from="ResetXPButton" to="." method="_on_reset_xp_button_pressed"]

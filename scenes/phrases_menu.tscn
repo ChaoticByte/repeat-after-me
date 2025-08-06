@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqgcsf0855xq"]
+
+[ext_resource type="Shader" uid="uid://da36ryj6twm16" path="res://src/shaders/panel.gdshader" id="1_wplh1"]
+[ext_resource type="Script" uid="uid://fbgxxich2qgd" path="res://src/ui/phrases_menu.gd" id="2_2b2sm"]
+[ext_resource type="Theme" uid="uid://06umghrsjedx" path="res://resources/main_theme_overrides.tres" id="2_3hct6"]
+[ext_resource type="Texture2D" uid="uid://cbv7fmq2x6ucf" path="res://assets/icons/CloseIcon.png" id="3_3hct6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
+shader = ExtResource("1_wplh1")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_85g3d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_choun"]
+texture = SubResource("PlaceholderTexture2D_85g3d")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]
+font_size = 24
+
+[node name="PhrasesMenu" type="Panel"]
+material = SubResource("ShaderMaterial_choun")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_3hct6")
+theme_override_styles/panel = SubResource("StyleBoxTexture_choun")
+script = ExtResource("2_2b2sm")
+
+[node name="ClosePhrasesButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -32.0
+offset_top = 16.0
+offset_right = -12.0
+offset_bottom = 36.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_3hct6")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 79.0
+offset_bottom = 40.0
+text = "Phrases"
+label_settings = SubResource("LabelSettings_ya4ey")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 184.0
+offset_bottom = 75.0
+keep_editing_on_text_submit = true
+
+[node name="AddPhraseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -56.0
+offset_top = 56.0
+offset_right = -17.0
+offset_bottom = 75.0
+grow_horizontal = 0
+text = "Add"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.183
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.16
+offset_right = -8.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhrasesList" type="VBoxContainer" parent="ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[connection signal="pressed" from="ClosePhrasesButton" to="." method="_on_close_phrases_button_pressed"]
+[connection signal="pressed" from="AddPhraseButton" to="." method="_on_add_phrase_button_pressed"]

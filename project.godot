@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Repeat After Me"
+config/version="0.1.0"
+run/main_scene="uid://cv38ubwerjlpx"
+config/features=PackedStringArray("4.4", "Mobile")
+boot_splash/bg_color=Color(0.0562916, 0.0562916, 0.0562916, 1)
+boot_splash/image="uid://020ibqgo0y3m"
+config/icon="uid://020ibqgo0y3m"
+
+[autoload]
+
+NotificationQueue="*res://src/global/NotificationQueue.gd"
+XpLevelManager="*res://src/global/XpLevelManager.gd"
+PhrasesManager="*res://src/global/PhrasesManager.gd"
+CoreGameplayManager="*res://src/global/CoreGameplayManager.gd"
+SaveManager="*res://src/global/SaveManager.gd"
+
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=480
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
+anti_aliasing/quality/msaa_2d=1

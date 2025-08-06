@@ -1,0 +1,49 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://06umghrsjedx"]
+
+[ext_resource type="StyleBox" uid="uid://bv8sh5kxswy5" path="res://resources/button_box.tres" id="1_wpqen"]
+[ext_resource type="StyleBox" uid="uid://3j2rdpeh0hbi" path="res://resources/line_edit_box.tres" id="2_u8fmd"]
+[ext_resource type="FontFile" uid="uid://cfghoopnpsdsf" path="res://assets/fonts/monogram/monogram-extended.ttf" id="3_u8fmd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8p56c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b1161"]
+bg_color = Color(1, 1, 1, 0.552941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpqen"]
+bg_color = Color(1, 1, 1, 0.552941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u8fmd"]
+bg_color = Color(1, 1, 1, 0.552941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8p56c"]
+border_width_left = 1
+border_width_right = 1
+border_color = Color(1, 1, 1, 0.113725)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kqed"]
+border_width_left = 2
+border_width_right = 2
+border_color = Color(1, 1, 1, 0.113725)
+
+[resource]
+default_font = ExtResource("3_u8fmd")
+default_font_size = 20
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_focus_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/disabled = ExtResource("1_wpqen")
+Button/styles/focus = ExtResource("1_wpqen")
+Button/styles/hover = ExtResource("1_wpqen")
+Button/styles/hover_pressed = ExtResource("1_wpqen")
+Button/styles/normal = ExtResource("1_wpqen")
+Button/styles/pressed = ExtResource("1_wpqen")
+LineEdit/styles/focus = ExtResource("2_u8fmd")
+LineEdit/styles/normal = ExtResource("2_u8fmd")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_8p56c")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_b1161")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_wpqen")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_u8fmd")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_8p56c")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_8kqed")

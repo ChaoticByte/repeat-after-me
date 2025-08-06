@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6hmd8gv7m2tv"]
+
+[ext_resource type="Script" uid="uid://bgb4gukelil6o" path="res://src/ui/phrases_menu_phrase.gd" id="1_6l37r"]
+[ext_resource type="Theme" uid="uid://06umghrsjedx" path="res://resources/main_theme_overrides.tres" id="1_vmoog"]
+[ext_resource type="Texture2D" uid="uid://cdf7kvjxmp6a" path="res://assets/icons/RemoveIcon.png" id="2_cv30m"]
+
+[node name="Phrase" type="Control"]
+custom_minimum_size = Vector2(208, 16)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 224.0
+offset_bottom = 16.0
+theme = ExtResource("1_vmoog")
+script = ExtResource("1_6l37r")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.143
+offset_right = -48.032
+offset_bottom = 16.0
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="RemoveButton" type="TextureButton" parent="."]
+layout_mode = 2
+anchor_left = 1.036
+anchor_right = 1.036
+offset_left = -16.064
+offset_right = -0.0639954
+offset_bottom = 16.0
+texture_normal = ExtResource("2_cv30m")
+stretch_mode = 0
+
+[connection signal="pressed" from="RemoveButton" to="." method="_on_remove_button_pressed"]
