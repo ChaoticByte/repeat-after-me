@@ -86,12 +86,12 @@ offset_right = 91.0
 offset_bottom = 207.9
 text = "Reset Data"
 
-[node name="ResetXPButton" type="Button" parent="ResetLabel"]
+[node name="ResetXpAndStatsButton" type="Button" parent="ResetLabel"]
 layout_mode = 0
 offset_top = 24.0
 offset_right = 76.0
 offset_bottom = 48.0
-text = "Reset XP"
+text = "Reset XP & Stats"
 
 [node name="Info Footer" type="Label" parent="."]
 layout_mode = 1
@@ -117,4 +117,4 @@ script = ExtResource("5_lwwgp")
 [connection signal="pressed" from="CloseSettingsButton" to="." method="_on_close_settings_button_pressed"]
 [connection signal="pressed" from="ImportExportLabel/ImportButton" to="." method="_on_import_button_pressed"]
 [connection signal="pressed" from="ImportExportLabel/ExportButton" to="." method="_on_export_button_pressed"]
-[connection signal="pressed" from="ResetLabel/ResetXPButton" to="." method="_on_reset_xp_button_pressed"]
+[connection signal="pressed" from="ResetLabel/ResetXpAndStatsButton" to="." method="_on_reset_xp_and_stats_button_pressed"]

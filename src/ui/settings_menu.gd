@@ -6,15 +6,18 @@ func _ready() -> void:
 func _on_close_settings_button_pressed() -> void:
 	hide()
 
-func _on_reset_xp_button_pressed() -> void:
+func _on_reset_xp_and_stats_button_pressed() -> void:
 	XpLevelManager.player_xp = 0
+	CoreGameplayManager.last_played_phrases = {}
 	SaveManager.save_game()
-	NotificationQueue.add("Reset XP.")
+	CoreGameplayManager.next_phrase()
+	NotificationQueue.add("Reset XP & Stats.")
 
 func _on_import_button_pressed() -> void:
 	var data = DisplayServer.clipboard_get()
 	if SaveManager.import_from_base64(data):
 		NotificationQueue.add("Import successful", 4000)
+		CoreGameplayManager.next_phrase()
 	else:
 		NotificationQueue.add("Import failed", 4000)
 
