@@ -46,7 +46,7 @@ func next_phrase() -> void:
 		current_status = STATUS_PLEASE_REPEAT
 		return
 	# find the half of phrases that were repeated longest ago
-	var i_max = max(1, len(last_played_phrases) / 2)
+	var i_max = max(1, roundi(float(len(last_played_phrases)) / 2))
 	var phrases_played_longest_ago = last_played_phrases.slice(0, i_max)
 	# pick random phrase
 	var phrase = phrases_played_longest_ago.pick_random()

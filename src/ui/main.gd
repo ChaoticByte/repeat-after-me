@@ -2,7 +2,6 @@ extends Control
 
 func _ready() -> void:
 	CoreGameplayManager.next_phrase()
-	%SubmitButton.hide()
 	%AnswerInput.hide()
 
 func _on_settings_button_pressed() -> void:
@@ -24,17 +23,10 @@ func _process(_delta: float) -> void:
 		else:
 			%CurrentPhrase.text = ""
 			%AnswerInput.hide()
-			%SubmitButton.hide()
 	if last_known_status != CoreGameplayManager.current_status:
 		last_known_status = CoreGameplayManager.current_status
 		%CurrentStatus.text = last_known_status
 
-func _on_submit_button_pressed() -> void:
-	if CoreGameplayManager.answer(%AnswerInput.text):
-		%AnswerInput.clear()
-
 func _on_answer_input_text_changed(new_text: String) -> void:
-	if new_text.to_lower() == CoreGameplayManager.current_phrase.to_lower():
-		%SubmitButton.show()
-	else:
-		%SubmitButton.hide()
+	if CoreGameplayManager.answer(new_text):
+		%AnswerInput.clear()
