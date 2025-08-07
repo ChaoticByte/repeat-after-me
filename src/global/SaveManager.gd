@@ -25,7 +25,7 @@ func _from_dict(data: Dictionary) -> int:
 		for p in data["phrases"]:
 			PhrasesManager.phrases.append(p)
 		successfully_set += 1 #!
-	if "last_played_phrases" in data and data["last_played_phrases"] is Dictionary:
+	if "last_played_phrases" in data and data["last_played_phrases"] is Array:
 		CoreGameplayManager.last_played_phrases = data["last_played_phrases"]
 		successfully_set += 1 #!
 	return successfully_set

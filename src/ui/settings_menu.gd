@@ -8,7 +8,7 @@ func _on_close_settings_button_pressed() -> void:
 
 func _on_reset_xp_and_stats_button_pressed() -> void:
 	XpLevelManager.player_xp = 0
-	CoreGameplayManager.last_played_phrases = {}
+	CoreGameplayManager.last_played_phrases = []
 	SaveManager.save_game()
 	CoreGameplayManager.next_phrase()
 	NotificationQueue.add("Reset XP & Stats.")

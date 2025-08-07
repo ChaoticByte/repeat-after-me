@@ -14,15 +14,13 @@ var _last_autocleanup: int = 0 # ms since engine start
 var current_phrase: String = ""
 var current_status: String = ""
 
-var last_played_phrases: Dictionary = {} # p: [timestamp1, timestamp2, ...]
-
+# represents the order of last played phrases
+var last_played_phrases: Array = []
 
 func register_current_phrase_played():
-	var t = Time.get_unix_time_from_system()
 	if current_phrase in last_played_phrases:
-		last_played_phrases[current_phrase].append(t)
-	else:
-		last_played_phrases[current_phrase] = [t]
+		last_played_phrases.erase(current_phrase)
+	last_played_phrases.append(current_phrase)
 	SaveManager.save_game()
 
 func answer(p_in: String) -> bool:
@@ -38,30 +36,32 @@ func next_phrase() -> void:
 		current_phrase = ""
 		current_status = STATUS_NONE_AVAILABLE
 		return
-	# search for a non played phrase
+	# pick a random non-played phrase, if possible
+	var phrases_not_played = []
 	for p in PhrasesManager.phrases:
 		if not p in last_played_phrases:
-			current_phrase = p
-			current_status = STATUS_PLEASE_REPEAT
-			return
-	# find the phrase that was played the longest ago
-	var phrases_last_ts: Dictionary = {} # timestamp: phrase
-	var phrases_last_ts_keys: Array[float] = []
-	for p in last_played_phrases:
-		if p in PhrasesManager.phrases:
-			var t_max = last_played_phrases[p].max()
-			phrases_last_ts[t_max] = p
-			phrases_last_ts_keys.append(t_max)
-	# return the phrase with the smallest timestamp (-> longest ago)
-	current_phrase = phrases_last_ts[phrases_last_ts_keys.min()]
-	current_status = STATUS_PLEASE_REPEAT
+			phrases_not_played.append(p)
+	if len(phrases_not_played) > 0:
+		current_phrase = phrases_not_played.pick_random()
+		current_status = STATUS_PLEASE_REPEAT
+		return
+	# find the half of phrases that were repeated longest ago
+	var i_max = max(1, len(last_played_phrases) / 2)
+	var phrases_played_longest_ago = last_played_phrases.slice(0, i_max)
+	# pick random phrase
+	var phrase = phrases_played_longest_ago.pick_random()
+	if phrase == null: # this shouldn't happen!
+		current_phrase = ""
+		current_status = STATUS_NONE_AVAILABLE
+	else:
+		current_phrase = phrase
+		current_status = STATUS_PLEASE_REPEAT
 
 func try_overwrite_next_phrase(p: String):
 	if p in PhrasesManager.phrases:
 		current_phrase = p
 		current_status = STATUS_PLEASE_REPEAT
-	else:
-		# if this didn't work, choose one automatically
+	else: # if this didn't work, choose one automatically
 		next_phrase()
 
 func cleanup_last_played_phrases():
