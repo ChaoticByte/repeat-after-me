@@ -57,6 +57,10 @@ offset_top = 56.0
 offset_right = 184.0
 offset_bottom = 75.0
 keep_editing_on_text_submit = true
+context_menu_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
 
 [node name="AddPhraseButton" type="Button" parent="."]
 layout_mode = 1
